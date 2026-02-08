@@ -32,10 +32,11 @@ const Home = () => {
             exit="hidden"
             className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16"
           >
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate,
-            exercitationem harum, quia nulla temporibus deleniti libero veniam
-            vero beatae numquam ducimus illum ab similique ipsam tempore fugit
-            quod laudantium debitis.
+             I’m a <span className="text-white font-medium">Full Stack Developer & Writer</span>{" "}
+              building modern web and mobile applications that balance performance,
+              security, and real business impact. I design and develop custom systems from WordPress extensions and
+              automated workflows to blockchain-powered solutions, always exploring
+              new technologies to keep solutions adaptable and future-ready.
           </motion.p>
 
           {/* btn */}

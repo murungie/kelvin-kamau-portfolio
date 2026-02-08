@@ -8,19 +8,26 @@ import {
   FaJs,
   FaReact,
   FaWordpress,
+  FaSlack,
 } from "react-icons/fa";
 import {
-  SiAdobephotoshop,
-  SiAdobexd,
-  SiFramer,
   SiNextdotjs,
+  SiFramer,
+  SiNotion,
+  SiZapier,
+  SiAirtable,
+  SiMailchimp,
+  SiAdobecreativecloud,
+  SiEthereum,
 } from "react-icons/si";
 
 import Avatar from "../../components/Avatar";
 import Circles from "../../components/Circles";
 import { fadeIn } from "../../variants";
 
-//  data
+/* ======================
+   ABOUT DATA
+====================== */
 export const aboutData = [
   {
     title: "skills",
@@ -28,31 +35,35 @@ export const aboutData = [
       {
         title: "Web Development",
         icons: [
-          FaHtml5,
-          FaCss3,
-          FaJs,
-          FaReact,
-          SiNextdotjs,
-          SiFramer,
-          FaWordpress,
+          { icon: FaHtml5, name: "HTML5" },
+          { icon: FaCss3, name: "CSS3" },
+          { icon: FaJs, name: "JavaScript" },
+          { icon: FaReact, name: "React" },
+          { icon: SiNextdotjs, name: "Next.js" },
+          { icon: FaWordpress, name: "WordPress" },
         ],
       },
       {
-        title: "UI/UX Design",
-        icons: [FaFigma, SiAdobexd, SiAdobephotoshop],
-      },
-    ],
-  },
-  {
-    title: "awards",
-    info: [
-      {
-        title: "Webby Awards - Honoree",
-        stage: "2011 - 2012",
+        title: "UI / UX Design",
+        icons: [
+          { icon: FaFigma, name: "Figma" },
+          { icon: SiFramer, name: "Framer" },
+          { icon: SiAdobecreativecloud, name: "Adobe Creative Cloud" },
+        ],
       },
       {
-        title: "Adobe Design Achievement Awards - Finalist",
-        stage: "2009 - 2010",
+        title: "Automation & SaaS",
+        icons: [
+          { icon: SiZapier, name: "Zapier" },
+          { icon: SiAirtable, name: "Airtable" },
+          { icon: SiMailchimp, name: "Mailchimp" },
+          { icon: FaSlack, name: "Slack" },
+          { icon: SiNotion, name: "Notion" },
+        ],
+      },
+      {
+        title: "Web3 & Blockchain",
+        icons: [{ icon: SiEthereum, name: "Ethereum" }],
       },
     ],
   },
@@ -60,16 +71,16 @@ export const aboutData = [
     title: "experience",
     info: [
       {
-        title: "UX/UI Designer - XYZ Company",
-        stage: "2012 - 2023",
+        title: "Full Stack Developer & Automation Consultant",
+        stage: "2014 – Present",
       },
       {
-        title: "Web Developer - ABC Agency",
-        stage: "2010 - 2012",
+        title: "WordPress Plugin & Systems Developer",
+        stage: "2016 – Present",
       },
       {
-        title: "Intern - DEF Corporation",
-        stage: "2008 - 2010",
+        title: "Web & Mobile Application Developer",
+        stage: "2012 – 2014",
       },
     ],
   },
@@ -77,16 +88,12 @@ export const aboutData = [
     title: "credentials",
     info: [
       {
-        title: "Web Development - ABC University, LA, CA",
-        stage: "2011",
+        title: "MSc Computer Science – Murang’a University of Technology",
+        stage: "In Progress",
       },
       {
-        title: "Computer Science Diploma - AV Technical Institute",
-        stage: "2009",
-      },
-      {
-        title: "Certified Graphic Designer - ABC Institute, Los Angeles, CA",
-        stage: "2006",
+        title: "BSc Computer Science – Murang’a University of Technology",
+        stage: "2014",
       },
     ],
   },
@@ -99,7 +106,7 @@ const About = () => {
     <div className="h-full bg-primary/30 py-32 text-center xl:text-left">
       <Circles />
 
-      {/* avatar img */}
+      {/* Avatar */}
       <motion.div
         variants={fadeIn("right", 0.2)}
         initial="hidden"
@@ -110,123 +117,116 @@ const About = () => {
         <Avatar />
       </motion.div>
 
-      <div className="container mx-auto h-full flex flex-col items-center xl:flex-row gap-x-6">
-        {/* text */}
+      <div className="container mx-auto h-full flex flex-col xl:flex-row gap-x-6">
+        {/* LEFT */}
         <div className="flex-1 flex flex-col justify-center">
           <motion.h2
             variants={fadeIn("right", 0.2)}
             initial="hidden"
             animate="show"
-            exit="hidden"
             className="h2"
           >
-            Captivating <span className="text-accent">stories</span> birth
-            magnificent designs.
+            Hi, I’m <span className="text-accent">Kelvin</span>
           </motion.h2>
+
           <motion.p
             variants={fadeIn("right", 0.4)}
             initial="hidden"
             animate="show"
-            className="max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0"
+            className="max-w-[520px] mx-auto xl:mx-0 mb-8 px-2 xl:px-0"
           >
-            10 years ago, I begin freelancing as a developer. Since then, I've
-            done remote work for agencies, consulted for startups, and
-            collabrated on digital products for business and consumer use.
+            I’m a full stack developer and technical writer with experience in web
+            and mobile application development. I design scalable digital
+            products, automate business workflows, and build integrations that
+            help teams work smarter.
+            <br />
+            <br />
+            I hold a Computer Science degree from Murang’a University of
+            Technology and I’m currently pursuing a Master’s in Computer Science.
           </motion.p>
 
-          {/* counters */}
+          {/* COUNTERS */}
           <motion.div
             variants={fadeIn("right", 0.6)}
             initial="hidden"
             animate="show"
-            className="hidden md:flex md:max-w-xl xl:max-w-none mx-auto xl:mx-0 mb-8"
+            className="hidden md:flex gap-x-8"
           >
-            <div className="flex flex-1 xl:gap-x-6">
-              {/* experience */}
-              <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={10} duration={5} />
+            {[
+              { end: 10, label: "Years Experience" },
+              { end: 200, label: "Projects Delivered" },
+              { end: 50, label: "Automated Systems" },
+            ].map((item, i) => (
+              <div key={i}>
+                <div className="text-3xl font-extrabold text-accent mb-1">
+                  <CountUp start={0} end={item.end} duration={4} />
                 </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Years of experience.
-                </div>
-              </div>
-
-              {/* clients */}
-              <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={250} duration={5} />
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Satisfied clients.
+                <div className="text-xs uppercase tracking-wider">
+                  {item.label}
                 </div>
               </div>
-
-              {/* projects */}
-              <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={650} duration={5} />
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Finished projects.
-                </div>
-              </div>
-
-              {/* awards */}
-              <div className="relative flex-1">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={8} duration={5} />
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Winning awards.
-                </div>
-              </div>
-            </div>
+            ))}
           </motion.div>
         </div>
 
-        {/* info */}
+        {/* RIGHT */}
         <motion.div
           variants={fadeIn("left", 0.4)}
           initial="hidden"
           animate="show"
-          exit="hidden"
-          className="flex flex-col w-full xl:max-w-[48%] h-[480px]"
+          className="flex flex-col w-full xl:max-w-[48%] mt-12 xl:mt-0"
         >
-          <div className="flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4">
-            {aboutData.map((item, itemI) => (
-              <div
-                key={itemI}
-                className={`${
-                  index === itemI &&
-                  "text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300"
-                } cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] after:bg-white after:absolute after:-bottom-1 after:left-0`}
-                onClick={() => setIndex(itemI)}
+          {/* TABS */}
+          <div className="flex gap-x-8 mx-auto xl:mx-0 mb-8">
+            {aboutData.map((item, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                className={`relative capitalize xl:text-lg transition ${
+                  index === i
+                    ? "text-accent after:w-full after:bg-accent"
+                    : "text-white/60"
+                } after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-8`}
               >
                 {item.title}
-              </div>
+              </button>
             ))}
           </div>
 
-          <div className="py-2 xl:py-6 flex flex-col gap-y-2 xl:gap-y-4 items-center xl:items-start">
-            {aboutData[index].info.map((item, itemI) => (
-              <div
-                key={itemI}
-                className="flex-1 flex flex-col md:flex-row max-w-max gap-x-2 items-center text-center text-white/60"
-              >
-                {/* title */}
-                <div className="font-light mb-2 md:mb-0">{item.title}</div>
-                <div className="hidden md:flex">-</div>
-                <div>{item.stage}</div>
-
-                <div className="flex gap-x-4">
-                  {/* icons */}
-                  {item.icons?.map((Icon, iconI) => (
-                    <div key={iconI} className="text-2xl text-white">
-                      <Icon />
-                    </div>
-                  ))}
+          {/* CONTENT */}
+          <div className="flex flex-col gap-y-10">
+            {aboutData[index].info.map((item, i) => (
+              <div key={i}>
+                <div className="font-semibold mb-3 text-white">
+                  {item.title}
                 </div>
+
+                {/* TEXT (experience / credentials) */}
+                {item.stage && (
+                  <div className="text-white/60">{item.stage}</div>
+                )}
+
+                {/* ICONS (skills only) */}
+                {item.icons && (
+                  <div className="grid grid-cols-4 sm:grid-cols-6 gap-8 mt-4">
+                    {item.icons.map(({ icon: Icon, name }, iconI) => (
+                      <motion.div
+                        key={iconI}
+                        whileHover={{ y: -6, scale: 1.1 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="relative flex flex-col items-center group"
+                      >
+                        <div className="text-4xl text-white/90 group-hover:text-accent transition">
+                          <Icon />
+                        </div>
+
+                        <span className="absolute -bottom-7 text-[11px] uppercase tracking-wider text-white/80 opacity-0 group-hover:opacity-100 transition">
+                          {name}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>

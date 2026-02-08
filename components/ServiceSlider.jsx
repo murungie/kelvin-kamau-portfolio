@@ -1,91 +1,126 @@
-import {
-  RxCrop,
-  RxPencil2,
-  RxDesktop,
-  RxReader,
-  RxRocket,
-  RxArrowTopRight,
-} from "react-icons/rx";
-import { FreeMode, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { RxArrowTopRight } from "react-icons/rx";
+import { serviceData } from "./serviceData";
 
 import "swiper/css";
-import "swiper/css/free-mode";
 import "swiper/css/pagination";
-
-const serviceData = [
-  {
-    Icon: RxCrop,
-    title: "Branding",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    Icon: RxPencil2,
-    title: "Design",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    Icon: RxDesktop,
-    title: "Development",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    Icon: RxReader,
-    title: "Copywriting",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    Icon: RxRocket,
-    title: "SEO",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-];
+import "swiper/css/navigation";
 
 const ServiceSlider = () => {
   return (
-    <Swiper
-      breakpoints={{
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 15,
-        },
-        640: {
-          slidesPerView: 3,
-          spaceBetween: 15,
-        },
-      }}
-      pagination={{
-        clickable: true,
-      }}
-      modules={[FreeMode, Pagination]}
-      freeMode
-      className="h-[240px] sm:h-[340px]"
-    >
-      {serviceData.map((item, i) => (
-        <SwiperSlide key={i}>
-          <div className="bg-[rgba(65,47,123,0.15)] h-max rounded-lg px-6 py-8 flex sm:flex-col gap-x-6 sm:gap-x-0 group cursor-pointer hover:bg-[rgba(89,65,169,0.15)] transition-all duration-300">
-            {/* icon */}
-            <div className="text-4xl text-accent mb-4">
-              <item.Icon aria-hidden />
-            </div>
+    <div className="relative">
+      <Swiper
+        modules={[Pagination, Navigation]}
+        pagination={{ clickable: true }}
+        navigation
+        breakpoints={{
+          320: { slidesPerView: 1.05, spaceBetween: 16 },
+          640: { slidesPerView: 1.5, spaceBetween: 18 },
+          1024: { slidesPerView: 3, spaceBetween: 24 },
+        }}
+        className="pb-28"   // ⬅ important: space for dots + CTA
+      >
+        {serviceData.map((item, i) => (
+          <SwiperSlide key={i}>
+            <motion.article
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 120 }}
+              className="
+                group relative
+                h-[360px] sm:h-[380px]
+                rounded-2xl
+                bg-[rgba(65,47,123,0.28)]
+                backdrop-blur-xl
+                border border-white/10
+                p-6
+                flex flex-col
+                overflow-hidden
+              "
+            >
+              {/* ICON */}
+              <div className="text-3xl text-accent mb-4">
+                <item.Icon />
+              </div>
 
-            {/* title & description */}
-            <div className="mb-8">
-              <div className="mb-2 text-lg">{item.title}</div>
-              <p className="max-w-[350px] leading-normal">{item.description}</p>
-            </div>
+              {/* TITLE */}
+              <h3 className="text-base font-semibold mb-2">
+                {item.title}
+              </h3>
 
-            {/* arrow */}
-            <div className="text-3xl">
-              <RxArrowTopRight
-                className="group-hover:rotate-45 group-hover:text-accent transition-all duration-300"
-                aria-hidden
+              {/* DESCRIPTION */}
+              <div className="relative flex-1">
+                <motion.p
+                  className="
+                    text-sm text-white/70 leading-relaxed
+                    sm:opacity-0 sm:translate-y-6
+                    sm:group-hover:opacity-100
+                    sm:group-hover:translate-y-0
+                    transition-all duration-300
+                  "
+                >
+                  {item.description}
+                </motion.p>
+              </div>
+
+              {/* FOOTER */}
+              <div className="flex items-center justify-between pt-4">
+                <Link
+                  href="/work"
+                  className="
+                    text-xs uppercase tracking-widest
+                    text-white/60 hover:text-accent
+                    transition
+                  "
+                >
+                  Explore
+                </Link>
+
+                <RxArrowTopRight
+                  className="
+                    text-xl
+                    text-white/60
+                    group-hover:text-accent
+                    group-hover:rotate-45
+                    transition-all duration-300
+                  "
+                />
+              </div>
+
+              {/* GLOW */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute inset-0
+                  opacity-0 group-hover:opacity-100
+                  transition duration-500
+                  bg-[radial-gradient(circle_at_bottom,rgba(239,68,68,0.35),transparent_65%)]
+                "
               />
-            </div>
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+            </motion.article>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* CTA */}
+      <div className="relative z-30 flex justify-center mt-6">
+        <Link
+          href="/contact"
+          className="
+            inline-flex items-center gap-2
+            px-6 py-3 rounded-full
+            bg-accent text-primary font-semibold
+            hover:scale-105 transition
+            shadow-lg shadow-accent/30
+          "
+        >
+          Let’s Connect
+          <RxArrowTopRight />
+        </Link>
+      </div>
+    </div>
   );
 };
 
