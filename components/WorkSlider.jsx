@@ -5,7 +5,6 @@ import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
-import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 const workSlides = {
@@ -13,48 +12,48 @@ const workSlides = {
     {
       images: [
         {
-          title: "title",
+          title: "Full Stack Web Platform",
           path: "/thumb1.jpg",
-          link: "http://example.com",
+          link: "/projects/fullstack-platform",
         },
         {
-          title: "title",
+          title: "Custom WordPress System",
           path: "/thumb2.jpg",
-          link: "http://example.com",
+          link: "/projects/wordpress-system",
         },
         {
-          title: "title",
+          title: "Automation Dashboard",
           path: "/thumb3.jpg",
-          link: "http://example.com",
+          link: "/projects/automation-dashboard",
         },
         {
-          title: "title",
+          title: "Web3 Smart Contract App",
           path: "/thumb4.jpg",
-          link: "http://example.com",
+          link: "/projects/web3-app",
         },
       ],
     },
     {
       images: [
         {
-          title: "title",
+          title: "CRM Integration",
           path: "/thumb4.jpg",
-          link: "http://example.com",
+          link: "/projects/crm-integration",
         },
         {
-          title: "title",
+          title: "SaaS Landing Page",
           path: "/thumb1.jpg",
-          link: "http://example.com",
+          link: "/projects/saas-landing",
         },
         {
-          title: "title",
+          title: "API-Based Platform",
           path: "/thumb2.jpg",
-          link: "http://example.com",
+          link: "/projects/api-platform",
         },
         {
-          title: "title",
+          title: "Workflow Automation",
           path: "/thumb3.jpg",
-          link: "http://example.com",
+          link: "/projects/workflow-automation",
         },
       ],
     },
@@ -64,54 +63,48 @@ const workSlides = {
 const WorkSlider = () => {
   return (
     <Swiper
-      spaceBetween={10}
-      pagination={{
-        clickable: true,
-      }}
+      spaceBetween={24}
+      pagination={{ clickable: true }}
       modules={[Pagination]}
-      className="h-[280px] sm:h-[480px]"
+      className="w-full"
     >
       {workSlides.slides.map((slide, i) => (
         <SwiperSlide key={i}>
-          <div className="grid grid-cols-2 grid-rows-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6">
             {slide.images.map((image, imageI) => (
               <div
-                className="relative rounded-lg overflow-hidden flex items-center justify-center group"
                 key={imageI}
+                className="relative aspect-[4/3] rounded-xl overflow-hidden group bg-black"
               >
-                <div className="flex items-center justify-center relative overflow-hidden group">
-                  {/* image */}
-                  <Image
-                    src={image.path}
-                    alt={image.title}
-                    width={500}
-                    height={300}
-                  />
+                {/* IMAGE */}
+                <Image
+                  src={image.path}
+                  alt={image.title}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
 
-                  {/* overlay gradient */}
-                  <div
-                    className="absolute inset-0 bg-gradient-to-l from-transparent via-[#e838cc] to-[#4a22bd] opacity-0 group-hover:opacity-80 transition-all duration-700"
-                    aria-hidden
-                  />
+                {/* OVERLAY */}
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent
+                             opacity-0 group-hover:opacity-100 transition duration-500"
+                  aria-hidden
+                />
 
-                  {/* title */}
-                  <div className="absolute bottom-0 translate-y-full group-hover:-translate-y-10 group-hover:xl:-translate-y-20 transition-all duration-300">
+                {/* CONTENT */}
+                <div className="absolute inset-0 flex flex-col justify-end p-4">
+                  <div className="translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <h4 className="text-sm font-semibold mb-2">
+                      {image.title}
+                    </h4>
+
                     <Link
                       href={image.link}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="flex items-center gap-x-2 text-[13px] tracking-[0.2em]"
+                      className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-accent hover:underline"
                     >
-                      {/* title part 1 */}
-                      <div className="delay-100">LIVE</div>
-                      {/* title part 2 */}
-                      <div className="translate-y-[500%] group-hover:translate-y-0 transition-all duration-300 delay-150">
-                        PROJECT
-                      </div>
-                      {/* icon */}
-                      <div className="text-xl translate-y-[500%] group-hover:translate-y-0 transition-all duration-300 delay-150">
-                        <BsArrowRight aria-hidden />
-                      </div>
+                      View Project
+                      <BsArrowRight aria-hidden />
                     </Link>
                   </div>
                 </div>

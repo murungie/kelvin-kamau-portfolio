@@ -1,41 +1,18 @@
 import { motion } from "framer-motion";
 import { BsArrowRight } from "react-icons/bs";
+import { useForm, ValidationError } from "@formspree/react";
 
 import { fadeIn } from "../../variants";
-import { useState } from "react";
 
 const Contact = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-
-    const myForm = event.target;
-    const formData = new FormData(myForm);
-
-    fetch("/__forms.html", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          alert("Thank you. I will get back to you ASAP.");
-        } else {
-          console.log(res);
-        }
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setIsLoading(false));
-  };
+  const [state, handleSubmit] = useForm("mwvnkadd");
 
   return (
     <div className="h-full bg-primary/30">
       <div className="container mx-auto py-32 text-center xl:text-left flex items-center justify-center h-full">
-        {/* text & form */}
         <div className="flex flex-col w-full max-w-[700px]">
-          {/* text */}
+
+          {/* Heading */}
           <motion.h2
             variants={fadeIn("up", 0.2)}
             initial="hidden"
@@ -46,70 +23,70 @@ const Contact = () => {
             Let's <span className="text-accent">connect.</span>
           </motion.h2>
 
-          {/* form */}
+          {/* Success Message */}
+          {state.succeeded && (
+            <p className="text-green-400 text-center mb-6">
+              Thank you. I will get back to you ASAP.
+            </p>
+          )}
+
+          {/* Form */}
           <motion.form
+            onSubmit={handleSubmit}
             variants={fadeIn("up", 0.4)}
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="flex-1 flex flex-col gap-6 w-full mx-auto"
-            onSubmit={handleSubmit}
+            className="flex flex-col gap-6 w-full mx-auto"
             autoComplete="off"
-            autoCapitalize="off"
-            name="contact"
           >
-            {/* input group */}
+            {/* Name & Email */}
             <div className="flex gap-x-6 w-full">
-              <input type="hidden" name="form-name" value="contact" />
-
               <input
                 type="text"
                 name="name"
                 placeholder="Name"
                 className="input"
-                disabled={isLoading}
-                aria-disabled={isLoading}
                 required
-                aria-required
               />
               <input
                 type="email"
                 name="email"
                 placeholder="E-mail"
                 className="input"
-                disabled={isLoading}
-                aria-disabled={isLoading}
                 required
-                aria-required
               />
             </div>
+
+            <ValidationError field="email" errors={state.errors} />
+
+            {/* Subject */}
             <input
               type="text"
               name="subject"
               placeholder="Subject"
               className="input"
-              disabled={isLoading}
-              aria-disabled={isLoading}
               required
-              aria-required
             />
+
+            {/* Message */}
             <textarea
               name="message"
               placeholder="Message..."
               className="textarea"
-              disabled={isLoading}
-              aria-disabled={isLoading}
               required
-              aria-required
             />
+
+            <ValidationError field="message" errors={state.errors} />
+
+            {/* Submit Button */}
             <button
               type="submit"
+              disabled={state.submitting}
               className="btn rounded-full border border-white/50 max-w-[170px] px-8 transition-all duration-300 flex items-center justify-center overflow-hidden hover:border-accent group"
-              disabled={isLoading}
-              aria-disabled={isLoading}
             >
               <span className="group-hover:-translate-y-[120%] group-hover:opacity-0 transition-all duration-500">
-                Let's talk
+                {state.submitting ? "Sending..." : "Let's talk"}
               </span>
 
               <BsArrowRight
