@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import Header from "../components/Header";
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import TopLeftImg from "../components/TopLeftImg";
 
 // setup font
@@ -24,11 +25,13 @@ const Layout = ({ children }) => {
       <TopLeftImg />
       <Header />
       <Nav />
+      
 
       {/* main content */}
       <div className="pt-[110px] lg:pt-[130px]">
         {children}
       </div>
+      <Footer />
     </main>
   );
 };
