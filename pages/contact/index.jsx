@@ -58,7 +58,7 @@ const Contact = () => {
               transition={{ duration: 0.4 }}
               className="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-400/30 text-green-400 text-center"
             >
-              ✅ Message sent successfully.
+              ✅ Message sent successfully. I’ll get back to you shortly.
             </motion.div>
           )}
         </AnimatePresence>
