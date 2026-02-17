@@ -1,102 +1,112 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Mail, Phone, MessageCircle, Linkedin, Twitter, Github } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="relative border-t border-white/10 mt-20 bg-black/40 backdrop-blur-xl">
+    <footer className="relative mt-24 bg-[#0f1115] border-t border-white/10">
 
-      {/* Soft background blend */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+      {/* Subtle Glow Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,0,0,0.08),transparent_70%)] pointer-events-none" />
 
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
         viewport={{ once: true }}
-        className="container mx-auto relative z-10 py-10 px-6"
+        className="relative z-10 container mx-auto px-6 py-16"
       >
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-sm">
+        {/* Main Grid */}
+        <div className="grid md:grid-cols-3 gap-12 text-sm">
 
-          {/* Brand */}
-          <a href="/" className="group text-center md:text-left max-w-xs">
-            <h3 className="text-lg font-semibold tracking-wide group-hover:text-accent transition">
-              Kamau The Tutor
+          {/* Brand Section */}
+          <div>
+            <h3 className="text-xl font-semibold tracking-wide mb-4">
+              Kelvin <span className="text-red-500">Digital</span>
             </h3>
-            <p className="text-white/60 text-sm mt-2 leading-relaxed">
-              Designing and engineering secure, scalable digital systems
-              built for performance and long-term growth.
+            <p className="text-white/60 leading-relaxed max-w-sm">
+              Digital Marketing Strategist, Full-Stack Developer & Freelance
+              Consultant helping brands scale through smart technology,
+              performance marketing and conversion-driven systems.
             </p>
-          </a>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-white font-medium mb-4">Services</h4>
+            <ul className="space-y-3 text-white/60">
+              <li className="hover:text-red-500 transition">Performance Marketing</li>
+              <li className="hover:text-red-500 transition">Full-Stack Development</li>
+              <li className="hover:text-red-500 transition">SEO & Growth Strategy</li>
+              <li className="hover:text-red-500 transition">Website Optimization</li>
+              <li className="hover:text-red-500 transition">Freelance Consulting</li>
+            </ul>
+          </div>
 
           {/* Contact */}
-          <div className="flex flex-col md:flex-row gap-6 text-white/70 text-sm items-center">
+          <div>
+            <h4 className="text-white font-medium mb-4">Contact</h4>
 
-            {/* Email */}
-            <a
-              href="mailto:kamauthetutor@gmail.com"
-              className="flex items-center gap-2 hover:text-accent transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="1.8"
+            <div className="space-y-4 text-white/60">
+
+              <a
+                href="mailto:kamauthetutor@gmail.com"
+                className="flex items-center gap-3 hover:text-red-500 transition"
               >
-                <path strokeLinecap="round" strokeLinejoin="round"
-                  d="M3 8l9 6 9-6M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1z" />
-              </svg>
-              kamauthetutor@gmail.com
-            </a>
+                <Mail size={16} />
+                kamauthetutor@gmail.com
+              </a>
 
-            {/* Phone */}
-            <a
-              href="tel:0717090705"
-              className="flex items-center gap-2 hover:text-accent transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="1.8"
+              <a
+                href="tel:+254717090705"
+                className="flex items-center gap-3 hover:text-red-500 transition"
               >
-                <path strokeLinecap="round" strokeLinejoin="round"
-                  d="M3 5h2l3 7-1.5 1.5a16 16 0 006 6L14 18l7 3v2a2 2 0 01-2 2C9.716 25 0 15.284 0 4a2 2 0 012-2h1z" />
-              </svg>
-              +254 717 090 705
-            </a>
+                <Phone size={16} />
+                +254 717 090 705
+              </a>
 
-            {/* WhatsApp */}
-            <a
-              href="https://wa.me/254717090705"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-accent transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="1.8"
+              <a
+                href="https://wa.me/254717090705"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 hover:text-red-500 transition"
               >
-                <path strokeLinecap="round" strokeLinejoin="round"
-                  d="M21 12a9 9 0 11-16.95 4.95L3 21l4.05-1.05A9 9 0 1121 12z" />
-              </svg>
-              Chat on WhatsApp
-            </a>
+                <MessageCircle size={16} />
+                WhatsApp Chat
+              </a>
 
+            </div>
+
+            {/* Social Links */}
+            <div className="flex gap-4 mt-6">
+              <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-red-500/20 transition">
+                <Linkedin size={16} />
+              </a>
+              <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-red-500/20 transition">
+                <Twitter size={16} />
+              </a>
+              <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-red-500/20 transition">
+                <Github size={16} />
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Line */}
-        <div className="mt-8 pt-6 border-t border-white/10 text-center text-xs text-white/50 tracking-wide">
-          © {new Date().getFullYear()} Kamau The Tutor. All rights reserved.
+        {/* Bottom */}
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/40 gap-4">
+          <p>
+            © {new Date().getFullYear()} Kelvin  Kamau. All rights reserved.
+          </p>
+
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-red-500 transition">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-red-500 transition">
+              Terms of Service
+            </a>
+          </div>
         </div>
       </motion.div>
     </footer>
