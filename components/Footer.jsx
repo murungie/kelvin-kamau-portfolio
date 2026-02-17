@@ -26,7 +26,7 @@ const Footer = () => {
               Kelvin <span className="text-red-500">Digital</span>
             </h3>
             <p className="text-white/60 leading-relaxed max-w-sm">
-              Digital Marketing Strategist, Full-Stack Developer & Freelance
+              Full-Stack Developer,Digital Marketing Strategist & Freelance
               Consultant helping brands scale through smart technology,
               performance marketing and conversion-driven systems.
             </p>
@@ -36,8 +36,8 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-medium mb-4">Services</h4>
             <ul className="space-y-3 text-white/60">
-              <li className="hover:text-red-500 transition">Performance Marketing</li>
               <li className="hover:text-red-500 transition">Full-Stack Development</li>
+              <li className="hover:text-red-500 transition">Performance Marketing</li>
               <li className="hover:text-red-500 transition">SEO & Growth Strategy</li>
               <li className="hover:text-red-500 transition">Website Optimization</li>
               <li className="hover:text-red-500 transition">Freelance Consulting</li>
