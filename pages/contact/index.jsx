@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BsArrowRight } from "react-icons/bs";
 import { useForm, ValidationError } from "@formspree/react";
 import { useEffect, useRef, useState } from "react";
-
 import { fadeIn } from "../../variants";
 
 const Contact = () => {
@@ -10,7 +9,6 @@ const Contact = () => {
   const formRef = useRef(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // Clear form + show animated success
   useEffect(() => {
     if (state.succeeded && formRef.current) {
       formRef.current.reset();
@@ -25,15 +23,16 @@ const Contact = () => {
   }, [state.succeeded]);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-primary/40 via-black to-primary/20 flex items-center justify-center px-4">
-      
-      {/* Glass Card */}
+    <div className="relative min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-[#0f0f14] via-black to-[#0f0f14]">
+
+      {/* Card */}
       <motion.div
         variants={fadeIn("up", 0.2)}
         initial="hidden"
         animate="show"
         exit="hidden"
-        className="w-full max-w-2xl backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-10 shadow-2xl"
+        style={{ transform: "translateZ(0)" }}
+        className="w-full max-w-2xl bg-[#111217] border border-white/10 rounded-3xl p-10 shadow-[0_0_60px_rgba(255,0,0,0.05)]"
       >
         {/* Heading */}
         <motion.h2
@@ -42,24 +41,24 @@ const Contact = () => {
           transition={{ delay: 0.2 }}
           className="text-4xl font-semibold text-center mb-3"
         >
-          Let’s <span className="text-accent">Connect</span>
+          Let’s <span className="text-red-500">Connect</span>
         </motion.h2>
 
         <p className="text-white/60 text-center mb-10">
           Have a project in mind? Let’s build something powerful together.
         </p>
 
-        {/* Success Message */}
+        {/* Success */}
         <AnimatePresence>
           {showSuccess && (
             <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
               className="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-400/30 text-green-400 text-center"
             >
-              ✅ Message sent successfully. I’ll get back to you shortly.
+              ✅ Message sent successfully.
             </motion.div>
           )}
         </AnimatePresence>
@@ -75,29 +74,38 @@ const Contact = () => {
           className="flex flex-col gap-6"
           autoComplete="off"
         >
-          {/* Name + Email */}
+          {/* Hidden Local Time Field */}
+          <input
+            type="hidden"
+            name="submitted_at"
+            value={new Date().toLocaleString()}
+          />
+
           <div className="grid md:grid-cols-2 gap-6">
-            <FloatingInput name="name" type="text" label="Full Name" required />
-            <FloatingInput name="email" type="email" label="Email Address" required />
+            <Input name="name" type="text" placeholder="Full Name" required />
+            <Input name="email" type="email" placeholder="Email Address" required />
           </div>
 
           <ValidationError field="email" errors={state.errors} />
 
-          {/* Subject */}
-          <FloatingInput name="subject" type="text" label="Subject" required />
+          <Input name="subject" type="text" placeholder="Subject" required />
 
-          {/* Message */}
-          <FloatingTextarea name="message" label="Your Message" required />
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Your Message"
+            required
+            className="w-full px-5 py-4 rounded-xl bg-[#1a1b22] border border-white/10 focus:border-red-500 focus:outline-none transition-all text-white resize-none"
+          />
 
           <ValidationError field="message" errors={state.errors} />
 
-          {/* Submit Button */}
           <motion.button
             whileTap={{ scale: 0.97 }}
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.03 }}
             type="submit"
             disabled={state.submitting}
-            className="relative overflow-hidden mt-4 px-8 py-4 rounded-full bg-accent text-black font-semibold flex items-center justify-center gap-3 transition-all duration-300"
+            className="relative mt-4 px-8 py-4 rounded-full bg-red-500 text-black font-semibold flex items-center justify-center gap-3 transition-all duration-300"
           >
             {state.submitting ? (
               <motion.div
@@ -118,37 +126,11 @@ const Contact = () => {
   );
 };
 
-/* ---------- Floating Input Component ---------- */
-
-const FloatingInput = ({ label, ...props }) => {
-  return (
-    <div className="relative">
-      <input
-        {...props}
-        placeholder=" "
-        className="peer w-full px-4 py-4 rounded-xl bg-white/5 border border-white/10 focus:border-accent focus:outline-none transition-all text-white"
-      />
-      <label className="absolute left-4 top-4 text-white/50 text-sm transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-accent peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm bg-black px-1 rounded">
-        {label}
-      </label>
-    </div>
-  );
-};
-
-const FloatingTextarea = ({ label, ...props }) => {
-  return (
-    <div className="relative">
-      <textarea
-        {...props}
-        rows="5"
-        placeholder=" "
-        className="peer w-full px-4 py-4 rounded-xl bg-white/5 border border-white/10 focus:border-accent focus:outline-none transition-all text-white resize-none"
-      />
-      <label className="absolute left-4 top-4 text-white/50 text-sm transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-accent peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm bg-black px-1 rounded">
-        {label}
-      </label>
-    </div>
-  );
-};
+const Input = (props) => (
+  <input
+    {...props}
+    className="w-full px-5 py-4 rounded-xl bg-[#1a1b22] border border-white/10 focus:border-red-500 focus:outline-none transition-all text-white"
+  />
+);
 
 export default Contact;
