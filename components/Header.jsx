@@ -52,7 +52,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="xl:hidden flex flex-col items-left gap-y-6 pb-6 text-green-500">
+          <div className="xl:hidden flex flex-col items-left gap-y-6 pb-6 text-white">
             {navData.map((link, i) => (
               <Link
                 key={i}
